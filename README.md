@@ -2,9 +2,10 @@
 
 Source for my personal site — **[cloudanimal.github.io](https://cloudanimal.github.io)**.
 
-A hand-coded, zero-dependency static site (a single `index.html`, no build step and
-no framework) showcasing my security and vulnerability-management work, open-source
-tools, and writing. Light/dark themes, responsive layout, deployed via GitHub Pages.
+A zero-dependency static site (a single `index.html`, no framework and no build step),
+built with AI-assisted development, showcasing my security and vulnerability-management
+work, open-source tools, and writing. Light/dark themes, responsive layout, deployed via
+GitHub Pages.
 
 ## Featured projects
 
