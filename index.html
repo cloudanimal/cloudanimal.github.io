@@ -34,7 +34,7 @@
   }
   .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
 
-  .topbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--line); }
+  .topbar { display: flex; justify-content: flex-end; align-items: center; padding: 18px 0; position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--line); }
   .wordmark { font-family: var(--serif); font-size: 19px; font-weight: 500; letter-spacing: 0.2px; color: var(--ink); text-decoration: none; cursor: pointer; transition: color .2s ease; }
   .wordmark:hover { color: var(--accent); }
   .to-top {
@@ -142,8 +142,8 @@
 <div class="wrap">
 
   <nav class="topbar">
-    <a class="wordmark" href="#" id="wordmark">Joe Cook</a>
     <div class="topnav">
+      <a href="#" id="homeLink">Home</a>
       <a href="#work">Work</a>
       <a href="#writing">Writing</a>
       <a href="https://cloudanimal.github.io/cve-explorer/" target="_blank" rel="noopener noreferrer">CVE Explorer</a>
@@ -321,7 +321,7 @@
       reveals.forEach(function (el) { io.observe(el); });
     }
 
-    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.topnav a[href^="#"]'));
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.topnav a[href^="#"]:not(#homeLink)'));
     var sections = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
     var navIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -338,7 +338,7 @@
   // ---------- back-to-top: wordmark + floating button ----------
   (function () {
     function toTop(e) { if (e) e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    var wm = document.getElementById('wordmark');
+    var wm = document.getElementById('homeLink');
     if (wm) wm.addEventListener('click', toTop);
     var btn = document.createElement('button');
     btn.className = 'to-top'; btn.setAttribute('aria-label', 'Back to top'); btn.title = 'Back to top'; btn.innerHTML = '↑';
