@@ -35,7 +35,19 @@
   .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
 
   .topbar { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; }
-  .wordmark { font-family: var(--serif); font-size: 19px; font-weight: 500; letter-spacing: 0.2px; }
+  .wordmark { font-family: var(--serif); font-size: 19px; font-weight: 500; letter-spacing: 0.2px; color: var(--ink); text-decoration: none; cursor: pointer; transition: color .2s ease; }
+  .wordmark:hover { color: var(--accent); }
+  .to-top {
+    position: fixed; right: 26px; bottom: 26px; width: 44px; height: 44px; border-radius: 100px;
+    display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+    background: var(--paper); color: var(--soft); border: 1px solid var(--line); font-size: 18px; line-height: 1;
+    box-shadow: 0 6px 20px rgba(0,0,0,.10);
+    opacity: 0; visibility: hidden; transform: translateY(10px);
+    transition: opacity .25s ease, transform .25s ease, visibility .25s ease, border-color .2s ease, color .2s ease;
+    z-index: 50;
+  }
+  .to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+  .to-top:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-2px); }
   .topnav { display: flex; gap: 26px; align-items: center; }
   .topnav a {
     font-size: 13.5px; color: var(--soft); text-decoration: none; letter-spacing: 0.3px;
@@ -130,7 +142,7 @@
 <div class="wrap">
 
   <nav class="topbar">
-    <span class="wordmark">Joe Cook</span>
+    <a class="wordmark" href="#" id="wordmark">Joe Cook</a>
     <div class="topnav">
       <a href="#work">Work</a>
       <a href="#writing">Writing</a>
@@ -321,6 +333,20 @@
       });
     }, { threshold: 0.4 });
     sections.forEach(function (s) { if (s) navIO.observe(s); });
+  })();
+
+  // ---------- back-to-top: wordmark + floating button ----------
+  (function () {
+    function toTop(e) { if (e) e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    var wm = document.getElementById('wordmark');
+    if (wm) wm.addEventListener('click', toTop);
+    var btn = document.createElement('button');
+    btn.className = 'to-top'; btn.setAttribute('aria-label', 'Back to top'); btn.title = 'Back to top'; btn.innerHTML = '↑';
+    btn.addEventListener('click', toTop);
+    document.body.appendChild(btn);
+    function onScroll() { btn.classList.toggle('show', window.pageYOffset > 500); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   })();
 </script>
 </body>
