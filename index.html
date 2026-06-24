@@ -34,7 +34,8 @@
   }
   .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
 
-  .topbar { display: flex; justify-content: flex-end; align-items: center; padding: 18px 0; position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--line); }
+  .topbar { display: flex; justify-content: flex-end; align-items: center; padding: 18px 0; position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+  .topbar::-webkit-scrollbar { display: none; }
   .wordmark { font-family: var(--serif); font-size: 19px; font-weight: 500; letter-spacing: 0.2px; color: var(--ink); text-decoration: none; cursor: pointer; transition: color .2s ease; }
   .wordmark:hover { color: var(--accent); }
   .to-top {
@@ -48,10 +49,10 @@
   }
   .to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
   .to-top:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-2px); }
-  .topnav { display: flex; gap: 26px; align-items: center; }
+  .topnav { display: flex; gap: 18px; align-items: center; flex-wrap: nowrap; }
   .topnav a {
-    font-size: 13.5px; color: var(--soft); text-decoration: none; letter-spacing: 0.3px;
-    position: relative; transition: color .2s ease; padding-bottom: 2px;
+    font-size: 13px; color: var(--soft); text-decoration: none; letter-spacing: 0.3px;
+    position: relative; transition: color .2s ease; padding-bottom: 2px; white-space: nowrap;
   }
   .topnav a::after {
     content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px;
